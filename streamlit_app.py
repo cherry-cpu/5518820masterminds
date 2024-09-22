@@ -1,5 +1,10 @@
 import streamlit as st
+import sqlite3
 
+db=sqlite3.connect('asd.db')
+curs=s.connect()
+
+c=sqliet
 st.markdown("# Shareen")
 if 'data' not in st.session_state:
     st.session_state['data']=[]
