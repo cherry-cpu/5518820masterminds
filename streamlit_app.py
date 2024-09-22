@@ -1,9 +1,18 @@
 import streamlit as st
-import matplotlib.pyplot as plt
+import datetime
 
-st.title("Hello There")
+if 'data' not in st.session_state:
+    st.session_state['data']=[]
 
-fig,ax=plt.subplots()
-ax.plot([1,2,3],[3,2,1])
-st.pyplot(fig)
-st.help(st.pyplot)
+def make_data(n,t):
+    st.session_state['data'].append([n,t])
+
+with st.sidebar:
+    with st.form(key='f'):
+        name=st.text_input('name')
+        type_=st.text_input('type')
+        btn=st.form_submit_button('submit')
+        if btn:
+            make_data(name,type_)
+
+st.dataframe(st.session_state['data'], column_config={1:'a',2:'b'})
