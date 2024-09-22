@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header("Shareen")
+st.markdown("# Shareen")
 if 'data' not in st.session_state:
     st.session_state['data']=[]
 
