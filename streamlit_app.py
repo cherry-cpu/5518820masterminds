@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 
 db=sqlite3.connect('data.db')
-curs=s.connect()
+curs=db.connect()
 
 c=sqliet
 st.markdown("# Shareen")
