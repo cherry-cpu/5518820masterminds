@@ -14,4 +14,4 @@ with st.sidebar:
         if btn:
             make_data(name,type_)
 
-st.dataframe(st.session_state['data'], column_config={1:'a',2:'b'})
+st.dataframe(st.session_state['data'], column_config={1:'a',2:'b'}, use_container_width=True)
