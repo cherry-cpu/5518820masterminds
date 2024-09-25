@@ -17,7 +17,7 @@ if 'data' not in st.session_state:
 def make_data(n,t):
     st.session_state['data'].append([n,t])
     dat=cur.execute('select * from test1').fetchall()
-    print(dat)
+    st.write(dat)
 
 with st.sidebar:
     with st.form(key='f'):
