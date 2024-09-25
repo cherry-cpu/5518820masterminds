@@ -1,11 +1,22 @@
 import streamlit as st
 
+import sqlite3
+
+con=sqlite3.connect('data.db')
+cur=con.cursor()
+try:
+    q='create table test1(username TEXT, password TEXT)'
+    cur.execute(q)
+    cur.execute('insert into test1 values("asd", "asd")')
+    con.commit()
 
 if 'data' not in st.session_state:
     st.session_state['data']=[]
 
 def make_data(n,t):
     st.session_state['data'].append([n,t])
+    dat=cur.execute('select * from test1').fetchall()
+    print(dat)
 
 with st.sidebar:
     with st.form(key='f'):
