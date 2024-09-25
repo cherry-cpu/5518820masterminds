@@ -1,30 +1,46 @@
 import streamlit as st
+from random import random
+from time import sleep
+from threading import Thread
+import requests
+from streamlit.components.v1 import html
 
-import sqlite3
+st.text_input('asda')
 
-con=sqlite3.connect('data.db')
-cur=con.cursor()
-try:
-    q='create table test1(username TEXT, password TEXT)'
-    cur.execute(q)
-    cur.execute('insert into test1 values("asd", "asd")')
-    con.commit()
-except:
-    pass
-if 'data' not in st.session_state:
-    st.session_state['data']=[]
+if not st.session_state.get('data'):
+    st.session_state['data'] = []
+data = st.session_state['data']
+data.append(random())
+if len(data) > 30:
+    data = data[-30:]
+st.session_state['data'] = data
+st.line_chart(data)
+if st.toggle("Show message"):
+    st.write("Meggase")
+d=['a','b','c']
+dd=[]
+def asd():
+    global dd
+    r=requests.get('https://meowfacts.herokuapp.com/')
+    dd.append(r.json())
+    return r.json()
+for i in d:
+    st.write(i)
+t=[]
+for j in range(50):
+    t.append(Thread(target=asd))
+for k in t:
+    k.start()
+for asd in t:
+    asd.join()
 
-def make_data(n,t):
-    st.session_state['data'].append([n,t])
-    dat=cur.execute('select * from test1').fetchall()
-    st.write(dat)
-
-with st.sidebar:
-    with st.form(key='f'):
-        name=st.text_input('name')
-        type_=st.text_input('type')
-        btn=st.form_submit_button('submit')
-        if btn:
-            make_data(name,type_)
-
-st.dataframe(st.session_state['data'], column_config={1:'a',2:'b'}, use_container_width=True)
+st.write(dd)
+print(dd)
+st.text_input('asd')
+sleep(5)
+html('''
+<script>
+document.getElementsByClassName('st-emotion-cache-4z1n4l en6cib65')[0].hidden=true     
+</script>
+''')
+st.rerun()
