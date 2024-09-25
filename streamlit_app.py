@@ -40,8 +40,7 @@ st.text_input('asd')
 sleep(5)
 html('''
 <script>
-document.getElementsByClassName('st-emotion-cache-4z1n4l en6cib65')[0].hidden=true
-document.getElementsByClassName('st-emotion-cache-19or5k2 en6cib61 StatusWidget-enter-done')[0].hidden=true
+document.querySelector('[data-testid="stToolbar"]').hidden=true
 </script>
 ''')
 st.rerun()
