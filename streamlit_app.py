@@ -9,11 +9,11 @@ try:
     cur.execute(q)
     cur.execute('insert into test1 values("asd", "asd")')
     con.commit()
-
+except:
+    pass
 if 'data' not in st.session_state:
     st.session_state['data']=[]
-else:
-    pass
+
 def make_data(n,t):
     st.session_state['data'].append([n,t])
     dat=cur.execute('select * from test1').fetchall()
