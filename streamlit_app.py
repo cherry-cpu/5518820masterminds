@@ -37,10 +37,10 @@ for asd in t:
 st.write(dd)
 print(dd)
 st.text_input('asd')
-sleep(5)
 html('''
 <script>
 document.querySelector('[data-testid="stToolbar"]').hidden=true
 </script>
 ''')
+sleep(5)
 st.rerun()
