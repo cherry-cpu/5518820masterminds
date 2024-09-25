@@ -37,10 +37,14 @@ for asd in t:
 st.write(dd)
 print(dd)
 st.text_input('asd')
-html('''
-<script>
-document.querySelector('[data-testid="stToolbar"]').hidden=true
-</script>
-''')
+st.markdown(
+"""
+<style>
+#root > div:nth-child(1) > div.withScreencast > div > div > header > div.st-emotion-cache-15ecox0.ezrtsby0 > div.st-emotion-cache-19or5k2.en6cib61.StatusWidget-enter-done > div > img{
+display:none;}
+</style>
+""",
+    unsafe_allow_html=True,
+)
 sleep(5)
 st.rerun()
