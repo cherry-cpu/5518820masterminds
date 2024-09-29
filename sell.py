@@ -8,15 +8,9 @@ df=pd.DataFrame(st.session_state['logs'],columns=['Time Stamp','Stock','Price','
 
 sdf=st.dataframe(df, hide_index=True)
 
-@st.experimental_dialog('ok')
-def asd():
-    def asdasd():
-        print('asdasd')
-    st.button('asdasd', on_click=asdasd)
-
 if 'aa' not in st.session_state:
     st.session_state['aa']=0
-st.button('Asd', on_click=asd)
+
 def asdasd(i):
     print(f'asdasd {i}')
 
