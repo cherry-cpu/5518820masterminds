@@ -3,9 +3,6 @@ from sm_api import last_price
 from datetime import datetime
 import pandas as pd
 
-if 'logs' not in st.session_state:
-    st.session_state['logs']=[]
-
 symbol=st.text_input('Symbol', value="SBIN").upper()
 no_of_shares=st.number_input('No.of Shares', min_value=1, step=1)
 
