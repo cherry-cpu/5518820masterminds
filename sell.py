@@ -4,23 +4,22 @@ from datetime import datetime
 import pandas as pd
 from time import sleep
 
-df=pd.DataFrame(st.session_state['logs'],columns=['Time Stamp','Stock','Price','No.of Shares','Total Price'])
+#df=pd.DataFrame(st.session_state['logs'],columns=['Buy Id','Time Stamp','Stock','Price','No.of Shares','Total Price'])
+#sdf=st.dataframe(df, hide_index=True)
 
-sdf=st.dataframe(df, hide_index=True)
+def sell_action(i):
+    print(i[0])
+    print(i[1])
+    print(i[2])
+    print(i[3])
 
-if 'aa' not in st.session_state:
-    st.session_state['aa']=0
-
-def asdasd(i):
-    print(f'asdasd {i}')
 
 for i in st.session_state['logs']:
-    print(i)
-    with st.popover(f"{i[0]}--------{i[1]}----{i[2]}---{i[3]}"):
-        st.write(i)
-        st.number_input('Sell', key=f'sell_inp_{i[0]}')
-        st.button('Sell', key=f'sell_btn_{i[0]}')
-        st.metric(i[1], st.session_state['aa'])
-st.session_state['aa']+=1
-sleep(2)
+    with st.popover(f"{i[0]}--------{i[2]}___{i[3]}_____{i[4]}"):
+        st.metric(i[1], last_price(i[2]))
+        sell_nos=st.number_input('Sell', key=f'sell_inp_{i[0]}', step=1, min_value=1)
+        st.button('Sell', key=f'sell_btn_{i[0]}', on_click=sell_action, args=[i])
+
+
+sleep(5)
 st.rerun()
