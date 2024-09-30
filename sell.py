@@ -3,7 +3,8 @@ from sm_api import last_price
 from datetime import datetime
 import pandas as pd
 from time import sleep
-
+if 'sell_data' not in st.session_state:
+    st.session_state['sell_data']=[]
 df=pd.DataFrame(st.session_state['sell_data'],columns=['Buy Id','Time Stamp','Stock','Buy Price','Sell Price','No.of Shares'])
 sdf=st.dataframe(df, hide_index=True)
 
