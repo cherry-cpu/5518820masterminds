@@ -10,6 +10,7 @@ s.get('https://www.nseindia.com', headers=h)
 
 def last_price(symbol):
     res=s.get(f'https://www.nseindia.com/api/quote-equity?symbol={symbol}', headers=h)
-#    res=s.get(f'https://api.nasdaq.com/api/quote/{symbol}/info?assetclass=stocks', headers=h)
+#   res=s.get(f'https://api.nasdaq.com/api/quote/{symbol}/info?assetclass=stocks', headers=h)
     return res.json()['priceInfo']['lastPrice']
+
 #    return res.json()['data']['primaryData']['lastSalePrice']
