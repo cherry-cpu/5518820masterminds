@@ -10,6 +10,6 @@ s=r.Session()
 symbol='SBIN'
 s.get('https://www.nseindia.com', headers=h)
 res=s.get(f'https://www.nseindia.com/api/quote-equity?symbol={symbol}', headers=h)
-resè=res.json()['priceInfo']['lastPrice']
+#resè=res.json()['priceInfo']['lastPrice']
 
-st.write(rese)
+st.write(res)
