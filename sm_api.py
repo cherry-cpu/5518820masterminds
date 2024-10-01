@@ -6,7 +6,7 @@ import requests as r
 #    'Connection': 'keep-alive',
 #}
 s=r.Session()
-s.get('https://www.nseindia.com', headers=h)
+#s.get('https://www.nseindia.com', headers=h)
 
 def last_price(symbol):
 #    global s
@@ -17,7 +17,7 @@ def last_price(symbol):
     'Accept': '*/*',
     'Connection': 'keep-alive',
     }
-#    s.get('https://www.nseindia.com', headers=h)
+    s.get('https://www.nseindia.com', headers=h)
     res=s.get(f'https://www.nseindia.com/api/quote-equity?symbol={symbol}', headers=h)
 #   res=s.get(f'https://api.nasdaq.com/api/quote/{symbol}/info?assetclass=stocks', headers=h)
     return res.json()['priceInfo']['lastPrice']
