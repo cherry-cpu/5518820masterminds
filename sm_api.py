@@ -5,12 +5,9 @@ h={
     'Accept': '*/*',
     'Connection': 'keep-alive',
 }
-s=r.Session()
-s.get('https://www.nseindia.com', headers=h)
-
+r1=r.get('https://www.nseindia.com', headers=h)
+cookies=r1.cookies
 def last_price(symbol):
-    res=s.get(f'https://www.nseindia.com/api/quote-equity?symbol={symbol}', headers=h)
+    global cookies
+    res=r.get(f'https://www.nseindia.com/api/quote-equity?symbol={symbol}', headers=h, cookies=cookies)
     return res.json()['priceInfo']['lastPrice']
-
-#    res=s.get(f'https://api.nasdaq.com/api/quote/{symbol}/info?assetclass=stocks', headers=h)
-#    return res.json()['data']['primaryData']['lastSalePrice']
