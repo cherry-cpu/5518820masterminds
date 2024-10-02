@@ -1,7 +1,7 @@
 import streamlit as st
-from sm_api import last_price
 from datetime import datetime
 import pandas as pd
+from sm_api import last_price
 if 'logs' not in st.session_state:
     st.session_state['logs']=[]
 symbol=st.text_input('Symbol', value="SBIN").upper()
