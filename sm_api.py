@@ -7,8 +7,9 @@ h={
 }
 #r1=r.get('https://www.nseindia.com', headers=h)
 #cookies=r1.cookies
+rs=r.Session()
 def last_price(symbol):
-    rs=r.Session()
+    global rs
     rs.get('https://www.nseindia.com',headers=h)
     res=rs.get(f'https://www.nseindia.com/api/quote-equity?symbol={symbol}', headers=h)
     return res.json()['priceInfo']['lastPrice']
