@@ -17,7 +17,10 @@ no_of_shares=st.number_input('No.of Shares', min_value=1, step=1)
 if 'data' not in st.session_state:
     st.session_state['data']=[]
 
-st.write(st.session_state['data'])
+all_stock_names=[]
+for stock_name in cur.execute(f"select stock from {st.session_state['username']}_{st.session_state['user_id']}_holdings").fetchall():
+    all_stock_names.append(stock_name[0])
+st.session_state['data']=set(all_stock_names)
 def timestamp_to_id(timestamp, symbol, nos):
     return '_'.join(timestamp.replace('-','_').split(':')).split('.')[0]+'_'+'_'.join(timestamp.replace('-','_').split(':')).split('.')[1][:2]+'_'+symbol+'_'+f'{nos}'
 
@@ -25,8 +28,6 @@ def buy():
     global symbol
     symbol=symbol.upper()
     price=last_price(symbol)
-    if symbol not in st.session_state['data']:
-        st.session_state['data'].append(symbol)
     buy_action(st.session_state['username'],st.session_state['user_id'],stock_name=symbol, buy_price=price,no_of_shares=no_of_shares,current_holdings=no_of_shares, soldout_shares=0)
 
 r=get_holdings_data(st.session_state['username'],st.session_state['user_id'])
