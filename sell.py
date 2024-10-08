@@ -7,8 +7,18 @@ from all_tools import *
 
 if 'sell_data' not in st.session_state:
     st.session_state['sell_data']=[]
+
+st.session_state['sell_data']=cur.execute(f"select buy_id,time,stock,buy_price,no_of_shares,sell_price from {st.session_state['username']}_{st.session_state['user_id']}_soldout").fetchall()
+all_stock_names=[]
+
+for stock_name in cur.execute(f"select stock from {st.session_state['username']}_{st.session_state['user_id']}_holdings").fetchall():
+    all_stock_names.append(stock_name[0])
+all_stock_names=set(all_stock_names)
+
 df=pd.DataFrame(st.session_state['sell_data'],columns=['Buy Id','Time Stamp','Stock','Buy Price','Sell Price','No.of Shares'])
 sdf=st.dataframe(df, hide_index=True)
+
+st.session_state['data']=all_stock_names
 
 stock_prices=stocks_thread(st.session_state['data'])
 st.write(stock_prices)
